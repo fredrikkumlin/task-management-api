@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Task-Management</artifactId>
+	<artifactId>task-management-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Task-Management</name>
+	<name>task-management-api</name>
 	<description>A simple API for managing tasks in a to-do list.</description>
 	<url/>
 	<licenses>
