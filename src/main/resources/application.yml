@@ -1,10 +1,17 @@
 spring:
   application:
     name: "task-management-api"
-  security:
-    user:
-      name: "test"
-      password: "test"
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:tasksdb
+    driverClassName: org.h2.Driver
+    username: "sa"
+    password: "password"
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 springdoc:
   api-docs:
