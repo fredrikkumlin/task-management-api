@@ -12,6 +12,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  security:
+    user:
+      name: test
+      password: test
+      roles: USER
 
 springdoc:
   api-docs:

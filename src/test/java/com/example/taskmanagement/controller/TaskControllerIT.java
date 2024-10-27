@@ -2,8 +2,10 @@ package com.example.taskmanagement.controller;
 
 import com.example.taskmanagement.model.Task;
 import com.example.taskmanagement.repository.TaskRepository;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openapitools.model.ErrorResponse;
@@ -23,12 +25,20 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = DEFINED_PORT)
 public class TaskControllerIT {
 
+    private static final String USERNAME = "test";
+    private static final String PASSWORD = "test";
+
     @Autowired
     private TaskRepository taskRepository;
 
     @BeforeEach
-    public void setup() {
+    public void setupEach() {
         taskRepository.deleteAll();
+    }
+
+    @BeforeAll
+    public static void setupAll() {
+        RestAssured.authentication = RestAssured.basic(USERNAME, PASSWORD);
     }
 
     // Tests for Retrieving Tasks
