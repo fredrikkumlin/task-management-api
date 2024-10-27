@@ -38,7 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - Tasks
@@ -63,13 +63,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
 
   /tasks/{id}:
     get:
@@ -97,13 +97,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Tasks
@@ -136,19 +136,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Task not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - Tasks
@@ -170,13 +170,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
 
   /tasks/{id}/complete:
     patch:
@@ -204,13 +204,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   securitySchemes:
@@ -237,6 +237,7 @@ components:
         dueDate:
           type: string
           format: date
+          nullable: true
           description: The due date for the task
     TaskRequest:
       type: object
@@ -250,16 +251,26 @@ components:
         dueDate:
           type: string
           format: date
+          nullable: true
           description: The due date for the task
       required:
         - title
         - description
-    Error:
+    ErrorResponse:
       type: object
       properties:
-        code:
-          type: integer
-          description: Error code
         message:
           type: string
           description: Error message
+        errors:
+          type: array
+          description: List of validation errors
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The name of the field that failed validation
+              message:
+                type: string
+                description: The validation error message for the field
