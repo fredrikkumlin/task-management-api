@@ -34,6 +34,7 @@ public class TaskServiceImpl implements TaskService {
     public Task updateTask(Long id, Task updatedTask) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+
         task.setTitle(updatedTask.getTitle());
         task.setDescription(updatedTask.getDescription());
         task.setDueDate(updatedTask.getDueDate());
@@ -41,12 +42,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+
+        taskRepository.delete(task);
     }
 
     public Task markTaskAsCompleted(Long id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+
         task.setCompleted(true);
         return taskRepository.save(task);
     }
