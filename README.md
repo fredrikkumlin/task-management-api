@@ -73,7 +73,7 @@ To run this project, ensure you have the following installed:
    ```bash
    mvn spring-boot:run
    ```
-#### 6. Go to  
+#### 6. Swagger/OpenAPI
    Swagger ui: http://localhost:8080/swagger-ui/index.html  
    Docs: http://localhost:8080/api-docs
 
@@ -81,11 +81,18 @@ To run this project, ensure you have the following installed:
    username: test  
    password: test
 
+#### 7. Database  
+   H2 Console: http://localhost:8080/h2-console
 
-#### 7. Connect the frontend  
+   JDBC URL: jdbc:h2:mem:tasksdb  
+   username: sa  
+   password: password  
+
+
+#### 8. Connect the frontend  
    From the url: http://localhost:5173
 
 
-#### 8. If using IntelliJ  
+#### 9. If using IntelliJ  
    Right click on "target/generated-sources" Mark directory as "Generated Sources Root".
 
