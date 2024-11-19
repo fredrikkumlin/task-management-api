@@ -66,7 +66,7 @@ public class TaskControllerIT {
                 .extract()
                 .body()
                 .jsonPath()
-                .getList(".", TaskResponse.class);;
+                .getList(".", TaskResponse.class);
 
         assertEquals(2, responseList.size());
 

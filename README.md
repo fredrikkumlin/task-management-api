@@ -88,11 +88,5 @@ To run this project, ensure you have the following installed:
    username: sa  
    password: password  
 
-
-#### 8. Connect the frontend  
-   From the url: http://localhost:5173
-
-
-#### 9. If using IntelliJ  
+#### 8. If using IntelliJ  
    Right click on "target/generated-sources" Mark directory as "Generated Sources Root".
-
